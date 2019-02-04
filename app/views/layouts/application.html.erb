@@ -10,6 +10,14 @@
   </head>
 
   <body>
+    <% if user_signed_in? %>
+    <%= link_to('Dashboard', authenticated_user_root_path) %>
+    <%= link_to("User Logout(#{current_user.email})", destroy_user_session_path, method: :delete) %>
+
+    <% elsif super_admin_signed_in? %>
+    <%= link_to('Dashboard', authenticated_super_admin_root_path) %>
+    <%= link_to("Super Admin Logout(#{current_super_admin.email})", destroy_super_admin_session_path, method: :delete) %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

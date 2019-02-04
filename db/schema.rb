@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_04_092814) do
+ActiveRecord::Schema.define(version: 2019_02_04_110644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chat_messages", force: :cascade do |t|
+    t.integer "chat_room_id"
+    t.string "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_chat_messages_on_user_id"
+  end
+
+  create_table "chat_rooms", force: :cascade do |t|
+    t.string "senderable_type"
+    t.bigint "senderable_id"
+    t.string "recieverable_type"
+    t.bigint "recieverable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recieverable_type", "recieverable_id"], name: "index_chat_rooms_on_recieverable_type_and_recieverable_id"
+    t.index ["senderable_type", "senderable_id"], name: "index_chat_rooms_on_senderable_type_and_senderable_id"
+  end
 
   create_table "super_admins", force: :cascade do |t|
     t.string "email", default: "", null: false

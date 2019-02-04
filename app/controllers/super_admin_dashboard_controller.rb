@@ -3,5 +3,7 @@ class SuperAdminDashboardController < ApplicationController
 
 	def index
 		@heading = "Its admins dashboard"
+		@admins = SuperAdmin.where.not(id: current_super_admin.id)
+		@users = User.all
 	end
 end

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Senderable:</strong>
+  <%= @chat_room.senderable %>
+</p>
+
+<p>
+  <strong>Recieverable:</strong>
+  <%= @chat_room.recieverable %>
+</p>
+
+<%= link_to 'Edit', edit_chat_room_path(@chat_room) %> |
+<%= link_to 'Back', chat_rooms_path %>

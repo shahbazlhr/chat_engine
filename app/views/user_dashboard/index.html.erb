@@ -2,3 +2,38 @@
 
 <%= link_to('User Logout', destroy_user_session_path, method: :delete) %>
 <%#= link_to('Super Admin Logout', destroy_super_admin_session_path, method: :delete) %>
+<div class="container">
+
+<table class="table">
+	<thead>
+		<th>
+			email
+		</th>
+
+		<th>
+			actions
+		</th>
+	</thead>
+<tbody>
+	<th>
+		Other Users
+	</th>
+<% @users.each do |user| %>
+<tr>
+	<td><%= user.email %></td>
+	<td><%= link_to 'chat now', chat_messages_path(user_id: user.id) %></td>
+</tr>
+<% end %>
+	<th>
+		Super Admins
+	</th>
+<% @admins.each do |admin| %>
+<tr>
+	<td><%= admin.email %></td>
+	<td><%= link_to 'chat now', chat_messages_path(admin_user_id: admin.id) %></td>
+</tr>
+<% end %>
+
+</tbody>
+</table>
+</div>

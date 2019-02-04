@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
 	if resource_class == User
 		devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :city,:phone_number])
 	else
-		super
 	end
   end
 end

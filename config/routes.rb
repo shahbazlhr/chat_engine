@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  resources :chat_rooms
+  resources :chat_messages
+  
   devise_for :super_admins
   devise_for :users
 
