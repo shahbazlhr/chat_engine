@@ -20,8 +20,9 @@ ActiveRecord::Schema.define(version: 2019_02_04_110644) do
     t.string "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_chat_messages_on_user_id"
+    t.integer "senderable_id"
+    t.string "senderable_type"
+    t.index ["senderable_id", "senderable_type"], name: "index_chat_messages_on_senderable_id_and_senderable_type"
   end
 
   create_table "chat_rooms", force: :cascade do |t|

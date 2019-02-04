@@ -6,5 +6,5 @@ class User < ApplicationRecord
          
   has_many :chat_rooms_as_sender, :class_name => "ChatRoom", as: :senderable
   has_many :chat_rooms_as_reciever, :class_name => "ChatRoom", as: :recieverable
-  has_many :chat_messages
+  has_many :chat_messages, as: :senderable
 end

@@ -12,13 +12,15 @@
   <% end %>
 
   <div class="field">
-    <%= form.hidden_field :chat_room_id, value: params[:chat_room_id] %>
+    <%= form.hidden_field :chat_room_id, value: @chat_room.id %>
     <% if current_user.present? %>
-        <%= form.hidden_field :user_id, value: current_user.id %>
+        <%= form.hidden_field :senderable_id, value: current_user.id %>
+        <%= form.hidden_field :senderable_type, value: 'User' %>
         <%= hidden_field_tag :user_id, current_user.id %>
 
     <% elsif current_super_admin.present? %>
-        <%= form.hidden_field :user_id, value: current_super_admin.id %>
+        <%= form.hidden_field :senderable_id, value: current_super_admin.id %>
+        <%= form.hidden_field :senderable_type, value: 'SuperAdmin' %>
         <%= hidden_field_tag :admin_user_id, current_super_admin.id %>
 
     <% end %>

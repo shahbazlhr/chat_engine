@@ -17,7 +17,7 @@ devise_scope :super_admin do
       root to: 'user_dashboard#index', as: 'authenticated_user_root'
   	end
   end
-
+  get '/super_admin_dashboard', to: 'super_admin_dashboard#index', as: 'super_admin_dashboard' 
   root to: 'user_dashboard#index'
   # super_admin_root to: 'super_admin_dashboard#index' 
 

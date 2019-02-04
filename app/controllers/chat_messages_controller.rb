@@ -47,7 +47,11 @@ class ChatMessagesController < ApplicationController
 
     respond_to do |format|
       if @chat_message.save
-        format.html { redirect_to chat_messages_path(user_id: @chat_message.user_id, chat_room_id: @chat_message.chat_room_id), notice: 'Chat message was successfully created.' }
+        if @chat_message.senderable_type == "SuperAdmin"
+        format.html { redirect_to chat_messages_path(admin_user_id: @chat_message.senderable.id, chat_room_id: @chat_message.chat_room_id), notice: 'Chat message was successfully created.' }
+        elsif @chat_message.senderable_type == "User"
+          format.html { redirect_to chat_messages_path(user_id: @chat_message.senderable.id, chat_room_id: @chat_message.chat_room_id), notice: 'Chat message was successfully created.' }
+        end
         format.json { render :show, status: :created, location: @chat_message }
       else
         format.html { render :new }
@@ -95,6 +99,6 @@ class ChatMessagesController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def chat_message_params
-      params.require(:chat_message).permit(:chat_room_id, :message, :user_id)
+      params.require(:chat_message).permit(:chat_room_id, :message,:senderable_type, :senderable_id)
     end
 end
